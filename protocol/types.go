@@ -20,6 +20,20 @@ func (label label) String() string {
 	return strings.Trim(string(bytes[:]), "\x00")
 }
 
+type group [16]byte
+
+func (group group) String() string {
+	bytes := [16]byte(group)
+	return strings.Trim(string(bytes[:]), "\x00")
+}
+
+type echoPayload [64]byte
+
+func (ep echoPayload) String() string {
+	bytes := [64]byte(ep)
+	return strings.Trim(string(bytes[:]), "\x00")
+}
+
 type (
 	apSecurity uint8
 	ifaceType  uint8

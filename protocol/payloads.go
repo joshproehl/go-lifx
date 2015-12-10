@@ -125,6 +125,32 @@ type DeviceStateMcuRailVoltage struct {
 
 type DeviceReboot struct{}
 
+type DeviceAcknowledgement struct{}
+
+type DeviceGetLocation struct{}
+
+type DeviceStateLocation struct {
+	Location  group
+	Label     label
+	UpdatedAt uint64
+}
+
+type DeviceGetGroup struct{}
+
+type DeviceStateGroup struct {
+	Group     group
+	Label     label
+	UpdatedAt uint64
+}
+
+type DeviceEchoRequest struct {
+	Payload echoPayload
+}
+
+type DeviceEchoResponse struct {
+	Payload echoPayload
+}
+
 type LightGet struct{}
 
 type LightSet struct {
@@ -176,6 +202,17 @@ type LightGetTemperature struct{}
 
 type LightStateTemperature struct {
 	Temperature int16 // deci-celsius
+}
+
+type LightGetPower struct{}
+
+type LightSetPower struct {
+	Level    uint16
+	Duration uint32
+}
+
+type LightStatePower struct {
+	Level uint16
 }
 
 type WanConnectPlain struct {

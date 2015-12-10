@@ -36,6 +36,13 @@ const (
 	DeviceGetMcuRailVoltageID          = 36
 	DeviceStateMcuRailVoltageID        = 37
 	DeviceRebootID                     = 38
+	DeviceAcknowledgementID            = 45
+	DeviceGetLocationID                = 48
+	DeviceStateLocationID              = 50
+	DeviceGetGroupID                   = 51
+	DeviceStateGroupID                 = 53
+	DeviceEchoRequestID                = 58
+	DeviceEchoResponseID               = 59
 	LightGetID                         = 101
 	LightSetID                         = 102
 	LightSetWaveformID                 = 103
@@ -47,6 +54,9 @@ const (
 	LightStateRailVoltageID            = 109
 	LightGetTemperatureID              = 110
 	LightStateTemperatureID            = 111
+	LightGetPowerID                    = 116
+	LightSetPowerID                    = 117
+	LightStatePowerID                  = 118
 	WanConnectPlainID                  = 201
 	WanConnectKeyID                    = 202
 	WanStateConnectID                  = 203
@@ -137,6 +147,20 @@ func ForId(id uint16) Payload {
 		return new(DeviceStateMcuRailVoltage)
 	case DeviceRebootID:
 		return new(DeviceReboot)
+	case DeviceAcknowledgementID:
+		return new(DeviceAcknowledgement)
+	case DeviceGetLocationID:
+		return new(DeviceGetLocation)
+	case DeviceStateLocationID:
+		return new(DeviceStateLocation)
+	case DeviceGetGroupID:
+		return new(DeviceGetGroup)
+	case DeviceStateGroupID:
+		return new(DeviceStateGroup)
+	case DeviceEchoRequestID:
+		return new(DeviceEchoRequest)
+	case DeviceEchoResponseID:
+		return new(DeviceEchoResponse)
 	case LightGetID:
 		return new(LightGet)
 	case LightSetID:
@@ -159,6 +183,12 @@ func ForId(id uint16) Payload {
 		return new(LightGetTemperature)
 	case LightStateTemperatureID:
 		return new(LightStateTemperature)
+	case LightGetPowerID:
+		return new(LightGetPower)
+	case LightSetPowerID:
+		return new(LightSetPower)
+	case LightStatePowerID:
+		return new(LightStatePower)
 	case WanConnectPlainID:
 		return new(WanConnectPlain)
 	case WanConnectKeyID:
@@ -231,6 +261,13 @@ func (DeviceStateInfo) Id() uint16           { return DeviceStateInfoID }
 func (DeviceGetMcuRailVoltage) Id() uint16   { return DeviceGetMcuRailVoltageID }
 func (DeviceStateMcuRailVoltage) Id() uint16 { return DeviceStateMcuRailVoltageID }
 func (DeviceReboot) Id() uint16              { return DeviceRebootID }
+func (DeviceAcknowledgement) Id() uint16     { return DeviceAcknowledgementID }
+func (DeviceGetLocation) Id() uint16         { return DeviceGetLocationID }
+func (DeviceStateLocation) Id() uint16       { return DeviceStateLocationID }
+func (DeviceGetGroup) Id() uint16            { return DeviceGetGroupID }
+func (DeviceStateGroup) Id() uint16          { return DeviceStateGroupID }
+func (DeviceEchoRequest) Id() uint16         { return DeviceEchoRequestID }
+func (DeviceEchoResponse) Id() uint16        { return DeviceEchoResponseID }
 func (LightGet) Id() uint16                  { return LightGetID }
 func (LightSet) Id() uint16                  { return LightSetID }
 func (LightSetWaveform) Id() uint16          { return LightSetWaveformID }
@@ -242,6 +279,9 @@ func (LightGetRailVoltage) Id() uint16       { return LightGetRailVoltageID }
 func (LightStateRailVoltage) Id() uint16     { return LightStateRailVoltageID }
 func (LightGetTemperature) Id() uint16       { return LightGetTemperatureID }
 func (LightStateTemperature) Id() uint16     { return LightStateTemperatureID }
+func (LightGetPower) Id() uint16             { return LightGetPowerID }
+func (LightSetPower) Id() uint16             { return LightSetPowerID }
+func (LightStatePower) Id() uint16           { return LightStatePowerID }
 func (WanConnectPlain) Id() uint16           { return WanConnectPlainID }
 func (WanConnectKey) Id() uint16             { return WanConnectKeyID }
 func (WanStateConnect) Id() uint16           { return WanStateConnectID }
