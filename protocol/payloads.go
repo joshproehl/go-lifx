@@ -289,3 +289,8 @@ type SensorGetDimmerVoltage struct{}
 type SensorStateDimmerVoltage struct {
 	Voltage uint32
 }
+
+// Appears to be related to updating cloud with status. (https://community.lifx.com/t/using-the-source-and-target-fields-in-the-lan-protocol/124/3)
+type Unknown406 struct {
+	Data [4]byte // Unsure what the datatype of this payload is, or what it's meaning is, so we'll leave it as raw bytes
+}

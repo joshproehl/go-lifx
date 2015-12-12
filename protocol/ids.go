@@ -73,6 +73,7 @@ const (
 	SensorStateAmbientLightID          = 402
 	SensorGetDimmerVoltageID           = 403
 	SensorStateDimmerVoltageID         = 404
+	Unknown406ID                       = 406 // Appears to be related to updating cloud with status. (https://community.lifx.com/t/using-the-source-and-target-fields-in-the-lan-protocol/124/3)
 )
 
 func ForId(id uint16) Payload {
@@ -221,6 +222,8 @@ func ForId(id uint16) Payload {
 		return new(SensorGetDimmerVoltage)
 	case SensorStateDimmerVoltageID:
 		return new(SensorStateDimmerVoltage)
+	case Unknown406ID:
+		return new(Unknown406)
 	default:
 		return nil
 	}
@@ -298,3 +301,4 @@ func (SensorGetAmbientLight) Id() uint16     { return SensorGetAmbientLightID }
 func (SensorStateAmbientLight) Id() uint16   { return SensorStateAmbientLightID }
 func (SensorGetDimmerVoltage) Id() uint16    { return SensorGetDimmerVoltageID }
 func (SensorStateDimmerVoltage) Id() uint16  { return SensorStateDimmerVoltageID }
+func (Unknown406) Id() uint16                { return Unknown406ID }
