@@ -41,6 +41,7 @@ const (
 	DeviceStateLocationID              = 50
 	DeviceGetGroupID                   = 51
 	DeviceStateGroupID                 = 53
+	Unknown54ID                        = 54 // Unsure as to what this packet type is...
 	DeviceEchoRequestID                = 58
 	DeviceEchoResponseID               = 59
 	LightGetID                         = 101
@@ -158,6 +159,8 @@ func ForId(id uint16) Payload {
 		return new(DeviceGetGroup)
 	case DeviceStateGroupID:
 		return new(DeviceStateGroup)
+	case Unknown54ID:
+		return new(Unknown54)
 	case DeviceEchoRequestID:
 		return new(DeviceEchoRequest)
 	case DeviceEchoResponseID:
@@ -269,6 +272,7 @@ func (DeviceGetLocation) Id() uint16         { return DeviceGetLocationID }
 func (DeviceStateLocation) Id() uint16       { return DeviceStateLocationID }
 func (DeviceGetGroup) Id() uint16            { return DeviceGetGroupID }
 func (DeviceStateGroup) Id() uint16          { return DeviceStateGroupID }
+func (Unknown54) Id() uint16                 { return Unknown54ID }
 func (DeviceEchoRequest) Id() uint16         { return DeviceEchoRequestID }
 func (DeviceEchoResponse) Id() uint16        { return DeviceEchoResponseID }
 func (LightGet) Id() uint16                  { return LightGetID }

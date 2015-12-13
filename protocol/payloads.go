@@ -143,6 +143,8 @@ type DeviceStateGroup struct {
 	UpdatedAt uint64
 }
 
+type Unknown54 struct{}
+
 type DeviceEchoRequest struct {
 	Payload echoPayload
 }
