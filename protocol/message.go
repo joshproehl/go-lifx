@@ -5,12 +5,14 @@ import (
 	"encoding/binary"
 	"errors"
 	"fmt"
+	"net"
 )
 
 const compatibleVersion = 1024
 const headerSize = 36
 
 type Message struct {
+	From net.Addr
 	*Header
 	Payload
 }
@@ -75,9 +77,10 @@ func (m *Message) MarshalBinary() ([]byte, error) {
 	return append(buf.Bytes(), payloadBytes...), nil
 }
 
-func Decode(b []byte) (Message, error) {
+func Decode(d Datagram) (Message, error) {
 	msg := new(Message)
-	err := msg.UnmarshalBinary(b)
+	msg.From = d.From
+	err := msg.UnmarshalBinary(d.Data)
 	return *msg, err
 }
 
@@ -96,7 +99,7 @@ func NewMessageDecoder(datagrams <-chan Datagram) (<-chan Message, <-chan error)
 
 	go func() {
 		for datagram := range datagrams {
-			msg, err := Decode(datagram.Data)
+			msg, err := Decode(datagram)
 
 			if err != nil {
 				errs <- &BadDatagram{datagram, err}
